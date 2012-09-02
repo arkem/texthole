@@ -1,0 +1,11 @@
+div#viewarea {
+    display: none;
+}
+
+div.editable {
+    display: none;
+}
+
+div.loggedin {
+    display: none;
+}

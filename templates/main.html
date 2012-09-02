@@ -1,0 +1,37 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/static/texthole.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/texthole.css" />
+<div id="header">
+<h1>Texthole</h1>
+</div>
+<div id="login">
+{% if not user %}
+<a href="/login">Login</a><br>
+{% endif %}
+</div>
+<div id="viewarea">
+    <div id="viewarea_label"></div>
+    <pre id="content"></pre>
+</div>
+<div id="editarea">
+<textarea rows=25 cols=80 id="inputarea" wrap='off'></textarea><br>
+Expires:
+<select id="expiry">
+    <option value="1800">30 minutes</option>
+    <option value="21600">6 hours</option>
+    <option value="86400">1 day</option>
+    <option value="604800">7 days</option>
+    <option value="2592000">30 days</option>
+</select><br>
+<div class="loggedin">
+Anonymous: <input type="checkbox" id="anonymous" value="anonymous"/><br>
+</div>
+<button id="submit" onclick="create_tag('None')">Submit</button><br>
+<div class="editable">
+    <button id="delete" onclick="delete_tag(current_tag)">Delete</button><br>
+    <button id="update" onclick="create_tag(current_tag)">Update</button><br>
+</div>
+</div>
+<script>
+    $(document).ready(page_setup("{{tag}}", "{{user}}"));
+</script>

@@ -1,0 +1,16 @@
+application: texthole
+version: 1
+api_version: 1
+threadsafe: true
+runtime: python27
+
+libraries:
+- name: jinja2
+  version: "2.6"
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: texthole.application
