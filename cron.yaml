@@ -1,0 +1,4 @@
+cron:
+- description: Expire old messages
+  url: /task/expire
+  schedule: every 5 minutes
