@@ -16,12 +16,18 @@ function page_setup(tag, user) {
     }
 }
 
+function navigate_button() {
+    display_tag($("#navigateinput").val())
+}
+
 function display_tag(tag) {
     if (!/[A-Za-z0-9_-]{8}/.test(tag)) return false;
     $.getJSON('/download/' + tag, function(result) {
         if (result['status']) {
+            current_tag = tag;
             if (result['editable']) {
                 $(".editable").show();
+                $("#inputarea").val(result['body']);
             } else {
                 $(".editable").hide();
             }
@@ -32,10 +38,11 @@ function display_tag(tag) {
 }
 
 function display_tag_draw(tag, text) {
-    var link = "Viewing: <a href='/" + tag + "'>" + tag + "</a>";
-    $('#viewarea_label').html(link);
+    //var link = "Viewing: <a href='/" + tag + "'>" + tag + "</a>";
+    //$('#viewarea_label').html(link);
     $('#content').text(text);
     $('#viewarea').show();
+    $('#navigateinput').val(tag)
 }
 
 function create_tag(tag) {
@@ -45,7 +52,7 @@ function create_tag(tag) {
         message.body == $("#content").text()) return;
 
     if (logged_in()) {
-        message.authenticated = $("anonymous").attr("checked") != "checked";
+        message.authenticated = !$("#anonymous").is(":checked");
     } else {
         if (tag != 'None') return; // Can't edit if not logged in.
         message.authenticated = false;
@@ -60,7 +67,11 @@ function create_tag(tag) {
             success: function(result) {
                 current_tag = result['message_id'];
                 display_tag_draw(result['message_id'], message.body);
-                $(".editable").show();
+                if (!$("#anonymous").is(":checked")) {
+                    $(".editable").show();
+                } else {
+                    $(".editable").hide();
+                }
             }}
     );
 }
@@ -78,6 +89,7 @@ function delete_tag(tag) {
                 $(".editable").hide();
                 $("#viewarea").hide();
                 $("#inputarea").val("");
+                $("#navigateinput").val("");
             }}
     );
 

@@ -2,10 +2,18 @@ div#viewarea {
     display: none;
 }
 
-div.editable {
+.editable {
     display: none;
 }
 
 div.loggedin {
     display: none;
+}
+
+div#login {
+    position: relative;
+    left: 360px;
+    top: -45px;
+    width: 300px;
+    text-align: right;
 }

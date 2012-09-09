@@ -5,13 +5,18 @@
 <h3>Text Barrel</h3>
 </div>
 <div id="login">
-{% if not user %}
+{% if user %}
+{{user}} <a href="/logout">Logout</a><br>
+{% else %}
 <a href="/login">Login</a><br>
 {% endif %}
 </div>
 <div id="viewarea">
-    <div id="viewarea_label"></div>
     <pre id="content"></pre>
+</div>
+<div id="navigatearea">
+<input type="text" id="navigateinput">
+<button id="navigatebutton" onclick="navigate_button()">Navigate</button>
 </div>
 <div id="editarea">
 <textarea rows=25 cols=80 id="inputarea" wrap='off'></textarea><br>
@@ -26,11 +31,10 @@ Expires:
 <div class="loggedin">
 Anonymous: <input type="checkbox" id="anonymous" value="anonymous"/><br>
 </div>
-<button id="submit" onclick="create_tag('None')">Submit</button><br>
-<div class="editable">
-    <button id="delete" onclick="delete_tag(current_tag)">Delete</button><br>
-    <button id="update" onclick="create_tag(current_tag)">Update</button><br>
-</div>
+<button id="submit" onclick="create_tag('None')">Submit</button>
+<button class="editable" id="delete" onclick="delete_tag(current_tag)">Delete</button>
+<button class="editable" id="update" onclick="create_tag(current_tag)">Update</button>
+<br>
 </div>
 <script>
     $(document).ready(page_setup("{{tag}}", "{{user}}"));
