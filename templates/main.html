@@ -1,8 +1,9 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="/static/texthole.js"></script>
+
 <link rel="stylesheet" type="text/css" href="/static/texthole.css" />
 <div id="header">
-<h3>Text Barrel</h3>
+<h3>TextHole</h3>
 </div>
 <div id="login">
 {% if user %}
@@ -12,7 +13,8 @@
 {% endif %}
 </div>
 <div id="viewarea">
-    <pre id="content"></pre>
+    <div id="link"></div>
+    <p><pre id="content"></pre></p>
 </div>
 <div id="navigatearea">
 <input type="text" id="navigateinput">

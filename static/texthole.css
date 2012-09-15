@@ -2,6 +2,17 @@ div#viewarea {
     display: none;
 }
 
+pre#content {
+    border: solid;
+    width: 650px;
+    padding: 5px;
+    border-width: 1px;
+}
+
+div#link {
+    font-style: italic;
+}
+
 .editable {
     display: none;
 }

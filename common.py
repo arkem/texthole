@@ -58,6 +58,9 @@ def new_message(data, user, message_id = None, ip = None):
 
     if "authenticated" in data and user:
         message.user = user
+        username = user.email()
+    else:
+        username = "None"
     expiry = min(int(data.get('expiry', '60000')), 31557600)
     message.expiry = int(time.time()+expiry)
     if ip:
@@ -66,7 +69,7 @@ def new_message(data, user, message_id = None, ip = None):
     memcache.set(message.message_id, message)
     output = {'message_id': message.message_id,
                 'expiry': message.expiry,
-                'user': user.email(),
+                'user': username,
                 'status': True}
     return json.dumps(output)
     

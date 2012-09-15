@@ -38,9 +38,11 @@ function display_tag(tag) {
 }
 
 function display_tag_draw(tag, text) {
-    //var link = "Viewing: <a href='/" + tag + "'>" + tag + "</a>";
-    //$('#viewarea_label').html(link);
+    if (!/[A-Za-z0-9_-]{8}/.test(tag)) return false;
+    var link_html = " Available at: <a href='/" + tag +
+                    "'>http://texthole.arkem.org/" + tag + "</a>";
     $('#content').text(text);
+    $('#link').html(link_html);
     $('#viewarea').show();
     $('#navigateinput').val(tag)
 }
