@@ -2,6 +2,7 @@
 <script type="text/javascript" src="/static/texthole.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/static/texthole.css" />
+<title>TextHole</title>
 <div id="header">
 <h3>TextHole</h3>
 </div>
@@ -38,6 +39,17 @@ Anonymous: <input type="checkbox" id="anonymous" value="anonymous"/><br>
 <button class="editable" id="update" onclick="create_tag(current_tag)">Update</button>
 <br>
 </div>
-<script>
+<script type="text/javascript">
     $(document).ready(page_setup("{{tag}}", "{{user}}"));
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34833798-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
 </script>
