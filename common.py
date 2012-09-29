@@ -40,10 +40,17 @@ def fetch_message(message_id, cache = False):
         q = db.GqlQuery('SELECT * FROM Message ' +
                         'WHERE deleted = False ' +
                         'AND message_id = :1 ' +
-                        'ORDER BY expiry DESC', message_id)
+                        'AND expiry < :2 ' + 
+                        'ORDER BY expiry DESC',
+                        message_id, int(time.time()))
         message = q.get()
         if cache and message:
             memcache.add(message_id, message)
+
+    if message and message.expiry < int(time.time()):
+        message = None    
+        memcache.delete(message_id)
+
     return message
 
 
@@ -68,9 +75,9 @@ def new_message(data, user, message_id = None, ip = None):
     message.put()
     memcache.set(message.message_id, message)
     output = {'message_id': message.message_id,
-                'expiry': message.expiry,
-                'user': username,
-                'status': True}
+              'expiry': message.expiry,
+              'user': username,
+              'status': True}
     return json.dumps(output)
     
 

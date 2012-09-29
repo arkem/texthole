@@ -1,4 +1,4 @@
 cron:
 - description: Expire old messages
   url: /task/expire
-  schedule: every 10 minutes
+  schedule: every 24 hours
