@@ -4,6 +4,7 @@ from google.appengine.ext import webapp
 import common
 import jinja2
 import json
+import logging
 import time
 
 env = jinja2.Environment(loader=jinja2.PackageLoader('texthole', 'templates'),

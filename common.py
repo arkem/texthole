@@ -1,6 +1,7 @@
 import models
 import base64
 import json
+import logging
 import os
 import time
 from google.appengine.ext import db
@@ -113,15 +114,15 @@ def process_command(data, user = None, ip = None):
        'authenticated' in data and\
        'overwrite' in data and\
        user:
-        return overwrite_message(data, user, ip)
+        return overwrite_message(data, user, ip=ip)
     
     if 'body' in data and\
        'authenticated' in data and\
        'delete' in data and\
        user:
-        return overwrite_message(data, user, ip)
+        return overwrite_message(data, user, ip=ip)
 
     if 'body' in data:
-        return new_message(data, user, ip)
+        return new_message(data, user, ip=ip)
 
     return error_message(data, user, message = "Unknown command")

@@ -1,0 +1,5 @@
+TextHole is a python appengine pastebin style web application I made to play around with appengine.
+
+It is designed to support anonymous posts (and authenticated contributions) and unauthenticated posting via JSON.
+
+Feel free to deploy it on your own appengine instances or use it as an example of how to work with appengine.
